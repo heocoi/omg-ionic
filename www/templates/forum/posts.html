@@ -5,7 +5,7 @@
 
     <ion-tabs class="tabs-striped tabs-top tabs-icon-left tabs-background-light tabs-color-positive">
         <ion-tab title="My requests" icon-on="ion-ios-cart" icon-off="ion-ios-cart-outline">
-            <ion-content style="top: 93px;">
+            <ion-content style="top: 110px;">
                 <div class="list card" ng-repeat="request in vm.myRequests">
                     <div class="item item-avatar">
                         <img ng-src="https://api.adorable.io/avatars/285/{{request.author.email}}">
@@ -27,7 +27,7 @@
         </ion-tab>
 
         <ion-tab title="All" icon-on="ion-ios-clock" icon-off="ion-ios-clock-outline">
-            <ion-content style="top: 93px;">
+            <ion-content style="top: 110px;">
                 <div class="list card" ng-repeat="request in vm.allRequests">
                     <div class="item item-avatar">
                         <img ng-src="https://api.adorable.io/avatars/285/{{request.author.email}}">
