@@ -5,6 +5,11 @@
 
 Ionic app we created when joined SB Cloud Hackathon 20160702-03
 
+## Libraries
+* [package.json](https://github.com/heocoi/omg-ionic/blob/master/package.json)
+* [bower.json](https://github.com/heocoi/omg-ionic/blob/master/bower.json)
+
+
 ## Installation
 
 * nodejs v5.7.0
