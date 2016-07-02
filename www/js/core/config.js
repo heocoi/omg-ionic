@@ -89,6 +89,7 @@
 
         .state('tab.showProfile', {
             url: '/showProfile',
+            cache: false,
             views: {
                 'myAccount': {
                     templateUrl: 'templates/myAccount/showProfile.html'

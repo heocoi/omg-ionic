@@ -19,7 +19,7 @@
         }
 
         function saveProfile() {
-            $http.post(API.BASE_URL + '/users/' + vm.myId + +'/profile', {
+            $http.post(API.BASE_URL + '/users/' + vm.myId +'/profile', {
                 first_name: vm.user.first_name,
                 last_name: vm.user.last_name,
                 age: vm.user.age,
@@ -27,7 +27,7 @@
                 language: vm.user.language,
                 introduction: vm.user.introduction
             }).success(function (data) {
-                $state.go('tab.showProfile');
+                $state.go('tab.showProfile', {}, {reload: true});
             }).error(function (data) {
                 console.log(data);
             });
