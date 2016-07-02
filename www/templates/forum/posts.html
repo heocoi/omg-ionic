@@ -1,0 +1,99 @@
+<ion-view view-title="Forum" ng-controller="ForumCtrl as vm">
+    <ion-nav-buttons side="right">
+        <a class="button button-icon icon ion-compose" ng-click="vm.openModal()"></a>
+    </ion-nav-buttons>
+
+    <ion-tabs class="tabs-striped tabs-top tabs-icon-left tabs-background-light tabs-color-positive">
+        <ion-tab title="My requests" icon-on="ion-ios-cart" icon-off="ion-ios-cart-outline">
+            <ion-content style="top: 93px;">
+                <div class="list card" ng-repeat="request in vm.myRequests">
+                    <div class="item item-avatar">
+                        <img ng-src="https://api.adorable.io/avatars/285/{{request.author.email}}">
+                        <h2>{{request.author.name || request.author.email}}</h2>
+                        <p am-time-ago="request.updated_at"></p>
+                    </div>
+                    <div class="item item-body">
+                        <h2>{{vm.categories[request.category_id].title}}</h3>
+                        <p>
+                            {{request.description}}
+                        </p>
+                    </div>
+                    <!-- <a class="item item-icon-left assertive" href="#">
+                        <i class="icon ion-music-note"></i>
+                        Start listening
+                    </a> -->
+                </div>
+            </ion-content>
+        </ion-tab>
+
+        <ion-tab title="All" icon-on="ion-ios-clock" icon-off="ion-ios-clock-outline">
+            <ion-content style="top: 93px;">
+                <div class="list card" ng-repeat="request in vm.allRequests">
+                    <div class="item item-avatar">
+                        <img ng-src="https://api.adorable.io/avatars/285/{{request.author.email}}">
+                        <h2>{{request.author.name || request.author.email}}</h2>
+                        <p am-time-ago="request.updated_at"></p>
+                    </div>
+                    <div class="item item-body">
+                        <h2>{{vm.categories[request.category_id].title}}</h3>
+                        <p>
+                            {{request.description}}
+                        </p>
+                    </div>
+                    <!-- <a class="item item-icon-left assertive" href="#">
+                        <i class="icon ion-music-note"></i>
+                        Start listening
+                    </a> -->
+                </div>
+            </ion-content>
+        </ion-tab>
+
+    </ion-tabs>
+
+    <script id="composeModal.html" type="text/ng-template">
+    <ion-modal-view>
+        <ion-header-bar>
+            <div class="buttons">
+                <button class="button button-icon icon ion-ios-close-empty" ng-click="vm.closeModal()"></button>
+            </div>
+            <h1 class="title">Request</h1>
+            <div class="buttons">
+                <button class="button button-clear button-positive" ng-click="vm.sendRequest()">Post</button>
+            </div>
+        </ion-header-bar>
+        <ion-content>
+            <div class="list">
+                <div class="item item-divider" ng-if="vm.errors.length">
+                    <ul style="list-style-type: disc;" class="padding">
+                        <li class="small assertive" ng-repeat="error in vm.errors">{{error}}</li>
+                    </ul>
+                </div>
+                <label class="item item-input item-select">
+                    <span class="input-label">Type</span>
+                    <select ng-model="vm.request.categoryId">
+                        <option ng-repeat="category in vm.categories" value="{{category.id}}">{{category.title}}</option>
+                    </select>
+                </label>
+                <label class="item item-input" ng-model="vm.request.startDatetime" ion-datetime-picker>
+                    <span class="input-label">Start time</span>
+                    <input type="hidden" ng-model="vm.request.startDatetime">
+                    <span>{{vm.request.startDatetime | date: "yyyy-MM-dd HH:mm"}}</span>
+                </label>
+                <label class="item item-input" ng-model="vm.request.endDatetime" ion-datetime-picker>
+                    <span class="input-label">End time</span>
+                    <input type="hidden" ng-model="vm.request.endDatetime">
+                    <span>{{vm.request.endDatetime | date: "yyyy-MM-dd HH:mm"}}</span>
+                </label>
+                <label class="item item-input">
+                    <span class="input-label">Place</span>
+                    <input type="text" ng-model="vm.request.place">
+                </label>
+                <label class="item item-input">
+                    <textarea placeholder="Description" style="height: 200px;" ng-model="vm.request.description"></textarea>
+                </label>
+            </div>
+        </ion-content>
+    </ion-modal-view>
+    </script>
+
+</ion-view>

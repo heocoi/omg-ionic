@@ -1,5 +1,17 @@
 angular.module('starter.controllers', [])
 
+.controller('AuthCtrl', function ($scope, $state) {
+    var auth = this;
+    auth.login = login;
+
+    function login() {
+        console.log(auth.username);
+        // TODO auth user info
+
+        $state.transitionTo('tab.dash');
+    }
+})
+
 .controller('DashCtrl', function($scope) {})
 
 .controller('ChatsCtrl', function($scope, Chats) {

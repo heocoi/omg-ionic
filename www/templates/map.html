@@ -1,0 +1,22 @@
+<ion-view view-title="Map" ng-controller="MapCtrl as vm" hide-nav-bar=true>
+    <ion-content style="background: url('http://subtlepatterns2015.subtlepatterns.netdna-cdn.com/patterns/noisy_grid.png')" data-tap-disabled="true">
+        <div class="map" ng-If="vm.ready">
+            <leaflet id="map" center="vm.map.center" markers="vm.map.markers" style="width: 100vw; height: 100vh;" defaults="vm.map.defaults"></leaflet>
+            <a class="button icon ion-pinpoint focus-control" ng-click="vm.focusMap()"></a>
+        </div>
+        <div class="profile-preview list" ng-if="vm.selectedUser">
+            <div class="item item-avatar">
+                <img src="https://api.adorable.io/avatars/285/{{vm.selectedUser.email}}">
+                <h2>{{vm.selectedUser.name || vm.selectedUser.email}}</h2>
+                <p>{{vm.selectedUser.country}}{{vm.selectedUser.age}}</p>
+                <i class="icon icon-2x ion-ios-close-empty" ng-click="vm.closePreview()"></i>
+            </div>
+
+            <div class="item item-body">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odit, autem eveniet sed deleniti illum eum sit perferendis atque, rerum, vero nobis maiores. Sapiente at, delectus blanditiis veritatis ipsa sequi facilis?
+                <p><a href="#" class="button button-small button-positive">View request</a></p>
+            </div>
+
+        </div>
+    </ion-content>
+</ion-view>

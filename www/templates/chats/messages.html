@@ -1,0 +1,20 @@
+<ion-view view-title="{{vm.partner.name || vm.partner.email}}" ng-controller="MessagesCtrl as vm">
+    <ion-content ng-style="{'margin-bottom': vm.keyboardHeight + 'px'}">
+        <div ng-repeat="message in vm.messages" ng-class="{self: message.user_id === vm.myId}" class="messages">
+            <div class="message">
+                <img ng-src="https://api.adorable.io/avatars/285/{{vm.partner.email}}" ng-if="message.user_id === vm.partnerId">
+                <span>{{ message.body }}</span>
+                <p style="font-size: 0.75em; color: #aaa;">{{message.created_at | amDateFormat:'hh:mm a'}}</p>
+            </div>
+        </div>
+    </ion-content>
+    <ion-footer-bar class="bar-stable item-input-inset" ng-style="{'bottom': vm.keyboardHeight + 'px'}">
+        <a class="button button-icon icon ion-camera"></a>
+        <label class="item-input-wrapper">
+            <input type="text" placeholder="Type your message" on-return="vm.sendMessage();" ng-model="vm.message" on-focus="vm.inputUp()" on-blur="vm.inputDown()" ng-msg-input/>
+        </label>
+        <button class="button button-clear" ng-click="vm.sendMessage()">
+            Send
+        </button>
+    </ion-footer-bar>
+</ion-view>
