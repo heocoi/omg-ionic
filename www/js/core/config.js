@@ -87,8 +87,18 @@
             }
         })
 
+        .state('tab.showProfile', {
+            url: '/showProfile',
+            cache: false,
+            views: {
+                'myAccount': {
+                    templateUrl: 'templates/myAccount/showProfile.html'
+                }
+            }
+        })
+
         .state('tab.editProfile', {
-            url: '/myAccount/editProfile',
+            url: '/editProfile',
             views: {
                 'myAccount': {
                     templateUrl: 'templates/myAccount/editProfile.html'
