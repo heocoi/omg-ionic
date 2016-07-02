@@ -1,4 +1,9 @@
 <ion-view view-title="{{vm.partner.name || vm.partner.email}}" ng-controller="MessagesCtrl as vm">
+    <ion-nav-buttons side="primary">
+        <button class="button button-clear" ng-click="vm.back()">
+            <i class="icon ion-chevron-left"></i> Back
+        </button>
+    </ion-nav-buttons>
     <ion-content ng-style="{'margin-bottom': vm.keyboardHeight + 'px'}">
         <div ng-repeat="message in vm.messages" ng-class="{self: message.user_id === vm.myId}" class="messages">
             <div class="message">

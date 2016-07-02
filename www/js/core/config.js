@@ -78,6 +78,16 @@
             }
         })
 
+        .state('tab.request', {
+            url: '/request/:requestId',
+            cache: false,
+            views: {
+                'tab-forum': {
+                    templateUrl: 'templates/forum/request.html',
+                }
+            }
+        })
+
         .state('tab.myAccount', {
             url: '/myAccount',
             views: {
