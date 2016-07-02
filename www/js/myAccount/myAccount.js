@@ -8,6 +8,8 @@
         var vm = this;
         vm.logout = logout;
         vm.tokenClaims = auth.getTokenClaims();
+        vm.setShareLocation = setShareLocation;
+
 
         active();
 
@@ -15,6 +17,7 @@
             vm.myId = vm.tokenClaims.sub;
             $http.get(API.BASE_URL + '/users/' + vm.myId).success(function (data) {
                 vm.user = data.user;
+                console.log(data);
             });
         }
 
@@ -27,6 +30,16 @@
                 historyRoot: true
             });
             $state.go('login');
+        }
+
+        function setShareLocation() {
+            $http.post(API.BASE_URL + '/users/' + vm.myId + '/profile', {
+                is_sharing_location: vm.user.is_sharing_location
+            }).success(function (data) {
+                console.log(data);
+            }).error(function (data) {
+                console.log(data);
+            });
         }
     }
 })();

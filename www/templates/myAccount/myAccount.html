@@ -3,7 +3,7 @@
         <div class="list" style="margin: 0;">
             <div class="item item-avatar item-avatar-center-lg">
                 <img class="center" src="https://api.adorable.io/avatars/285/{{vm.user.email}}" style="border: 2px solid #ccc;">
-                <h2 class="center">{{vm.user.first_name + ' ' + vm.user.first_name}} <a class="icon ion-edit" ng-href="#/tab/myAccount/editProfile" style="font-size: 1.2em;"></a><h2>
+                <h2 class="center">{{vm.user.first_name + ' ' + vm.user.last_name}}<h2>
             </div>
             <a class="item item-icon-right" ng-href="#/tab/showProfile">
                 Show my profile
@@ -13,15 +13,9 @@
             <div class="item item-divider">
                 Settings
             </div>
-            <li class="item item-toggle">
+            <ion-toggle ng-change="vm.setShareLocation()" ng-model="vm.user.is_sharing_location" ng-checked="vm.user.is_sharing_location == 1">
                 Share my location
-                <label class="toggle toggle-positive">
-                    <input type="checkbox" ng-checked="vm.isShareLoc">
-                    <div class="track">
-                        <div class="handle"></div>
-                    </div>
-                </label>
-            </li>
+            </ion-toggle>
 
             <a class="item item-icon-left" ng-click="vm.logout()">
                 <i class="icon ion-android-exit"></i>

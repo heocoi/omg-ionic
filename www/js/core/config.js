@@ -90,6 +90,7 @@
 
         .state('tab.myAccount', {
             url: '/myAccount',
+            cache: false,
             views: {
                 'myAccount': {
                     templateUrl: 'templates/myAccount/myAccount.html'

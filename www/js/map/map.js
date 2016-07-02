@@ -2,9 +2,9 @@
     'use strict';
 
     angular.module('app.map').controller('MapCtrl', MapCtrl);
-    MapCtrl.$inject = ['$scope', '$ionicLoading', 'leafletData', '$http', 'API', '_', '$state'];
+    MapCtrl.$inject = ['$scope', '$ionicLoading', 'leafletData', '$http', 'API', '_', '$state', 'auth'];
 
-    function MapCtrl($scope, $ionicLoading, leafletData, $http, API, _, $state) {
+    function MapCtrl($scope, $ionicLoading, leafletData, $http, API, _, $state, auth) {
         var vm = this;
         vm.map = {
             defaults: {
@@ -21,6 +21,7 @@
         vm.focusMap = focusMap;
         vm.chatWith = chatWith;
         vm.viewRequest = viewRequest;
+        vm.tokenClaims = auth.getTokenClaims();
 
         active();
 
@@ -45,11 +46,12 @@
         //////////////////
 
         function active() {
+            vm.myId = vm.tokenClaims.sub;
             // loading state
             $ionicLoading.show({
                 content: 'Loading',
                 animation: 'fade-in',
-                showBackdrop: true,
+                showBackdrop: false,
                 maxWidth: 200,
                 showDelay: 0
             });
@@ -59,10 +61,18 @@
                 iconUrl: 'https://maxcdn.icons8.com/Color/PNG/48/Maps/marker-48.png'
             };
 
+            // TODO how about the case user didn't allow geolocation
             navigator.geolocation.getCurrentPosition(function (pos) {
                 var lat = pos.coords.latitude, lng = pos.coords.longitude;
                 vm.userCurPos = pos;
                 console.log([lat, lng]);
+
+                // save user location
+                $http.post(API.BASE_URL + '/users/' + vm.myId + '/profile', {
+                    latitude: lat,
+                    longitude: lng
+                });
+
                 angular.extend(vm.map, {
                     center: {
                         lat: lat,
@@ -76,17 +86,27 @@
                             focus: true,
                             draggable: false,
                             icon: cuzMarkerIco
-                        },
-                        // XXX dummy data
-                        // TODO markerName must be user id
-                        1: {
-                            lat: lat - 0.05,
-                            lng: lng - 0.05,
-                            focus: false,
-                            draggable: false
-                        },
+                        }
                     }
                 });
+
+                // get users who is sharing location
+                $http.get(API.BASE_URL + '/is_sharing_location').success(function (data) {
+                    var users = data.users;
+                    for (var i = 0; i < users.length; i++) {
+                        var user = users[i];
+                        if (user.id == vm.myId) {
+                            continue;
+                        }
+                        vm.map.markers[user.id] = {
+                            lat: user.latitude,
+                            lng: user.longitude,
+                            focus: false,
+                            draggable: false
+                        };
+                    }
+                });
+
                 console.log(pos);
                 $scope.$apply(function () {
                     vm.ready = true;
