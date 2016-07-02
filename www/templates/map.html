@@ -8,14 +8,24 @@
             <div class="item item-avatar">
                 <img src="https://api.adorable.io/avatars/285/{{vm.selectedUser.email}}">
                 <h2>{{vm.selectedUser.name || vm.selectedUser.email}}</h2>
-                <p>{{vm.selectedUser.country}}{{vm.selectedUser.age}}</p>
+                <span ng-if="!request.author.gender">
+                    <img src="img/user_women.png" width="13">
+                </span>
+                <span ng-if="request.author.gender">
+                    <img src="img/user_man.png">
+                </span>
+                <span>{{vm.selectedUser.country}}</span>
                 <i class="icon icon-2x ion-ios-close-empty" ng-click="vm.closePreview()"></i>
             </div>
 
             <div class="item item-body">
+                <p>
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odit, autem eveniet sed deleniti illum eum sit perferendis atque, rerum, vero nobis maiores. Sapiente at, delectus blanditiis veritatis ipsa sequi facilis?
-                <p><a href="#" class="button button-small button-positive">View request</a></p>
+                </p>
+                <sapn><a href="#" class="button button-small button-energized">View request</a></span>
+                <span class="right-button"><a href="#" class="button button-small button-energized">Chat with me</a></span>
             </div>
+
 
         </div>
     </ion-content>

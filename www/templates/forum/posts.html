@@ -9,12 +9,13 @@
                 <div class="list card" ng-repeat="request in vm.myRequests">
                     <div class="item item-avatar">
                         <img ng-src="https://api.adorable.io/avatars/285/{{request.author.email}}">
-                        <h2>{{request.author.name || request.author.email}}</h2>
+                        <h2>{{request.author.first_name || request.author.email}}</h2>
                         <p am-time-ago="request.updated_at"></p>
+
                     </div>
                     <div class="item item-body">
-                        <h2>{{vm.categories[request.category_id].title}}</h3>
-                        <p>
+                        <h2 class="forum-h2-st">{{vm.categories[request.category_id].title}}</h3>
+                        <p class="forum-p-st">
                             {{request.description}}
                         </p>
                     </div>
@@ -31,12 +32,18 @@
                 <div class="list card" ng-repeat="request in vm.allRequests">
                     <div class="item item-avatar">
                         <img ng-src="https://api.adorable.io/avatars/285/{{request.author.email}}">
-                        <h2>{{request.author.name || request.author.email}}</h2>
+                        <h2>{{request.author.first_name +' '+ request.author.last_name || request.author.email}}</h2>
                         <p am-time-ago="request.updated_at"></p>
+                        <span class="forum-span-img-st" ng-if="!request.author.gender">
+                            <img src="img/user_women.png">
+                        </span>
+                        <span class="forum-span-img-st" ng-if="request.author.gender">
+                            <img src="img/user_man.png">
+                        </span>
                     </div>
                     <div class="item item-body">
-                        <h2>{{vm.categories[request.category_id].title}}</h3>
-                        <p>
+                        <h2 class="forum-h2-st"><i class="ion-ios-heart"></i> {{vm.categories[request.category_id].title}}</h2>
+                        <p class="forum-p-st">
                             {{request.description}}
                         </p>
                     </div>
@@ -54,12 +61,9 @@
     <ion-modal-view>
         <ion-header-bar>
             <div class="buttons">
-                <button class="button button-icon icon ion-ios-close-empty" ng-click="vm.closeModal()"></button>
+                <button id="close-icon-st" class="button button-icon icon ion-ios-close-empty" ng-click="vm.closeModal()"></button>
             </div>
-            <h1 class="title">Request</h1>
-            <div class="buttons">
-                <button class="button button-clear button-positive" ng-click="vm.sendRequest()">Post</button>
-            </div>
+            <h1 class="title post-h1-st">Request</h1>
         </ion-header-bar>
         <ion-content>
             <div class="list">
@@ -91,6 +95,11 @@
                 <label class="item item-input">
                     <textarea placeholder="Description" style="height: 200px;" ng-model="vm.request.description"></textarea>
                 </label>
+            </div>
+            <div class="popup-submit-st">
+                <button class="button button-positive" ng-click="vm.sendRequest()">
+                ã€€POSTã€€
+                </button>
             </div>
         </ion-content>
     </ion-modal-view>

@@ -1,19 +1,24 @@
 <ion-view hide-nav-bar="true" ng-controller="LoginCtrl as vm">
-    <ion-content class="padding">
-        <p class="msg-error" ng-show="vm.error">{{vm.error}}</p>
-        <div class="list list-inset">
-            <label class="item item-input">
-                <i class="icon ion-email placeholder-icon"></i>
-                <input type="text" placeholder="Email" ng-model="vm.email">
-            </label>
-            <label class="item item-input">
-                <i class="icon ion-locked placeholder-icon"></i>
-                <input type="password" placeholder="Password" ng-model="vm.password">
-            </label>
-            <button class="button button-block button-positive" ng-click="vm.submit()" ng-disabled="!vm.email || !vm.password">
+    <ion-content class="padding" style="background-color: #00897b;">
+        <div id="logo">
+            <img src="img/iconOMG.png">
+        </div>
+        <p class="msg-error">{{vm.error}}</p>
+        <div class="form-auth">
+            <div class="list list-inset">
+                <label class="item item-input">
+                    <input type="text" placeholder="Email" ng-model="vm.email">
+                </label>
+            </div>
+            <div class="list list-inset">
+                <label class="item item-input input-login-st">
+                    <input type="password" placeholder="Password" ng-model="vm.password">
+                </label>
+            </div>
+            <a class="button button-block button-positive" ng-click="vm.submit()" ng-disabled="!vm.email || !vm.password">
                 Login
-            </button>
-            <p><a ng-href="#/signup">Create new account</a> if you don't have yet.</p>
+            </a>
+            <p><a ng-href="#/signup" class="a_login">Create new account</a> if you don't have yet.</p>
         </div>
     </ion-content>
 </ion-view>
