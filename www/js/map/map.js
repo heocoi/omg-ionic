@@ -20,6 +20,7 @@
         vm.closePreview = closePreview;
         vm.focusMap = focusMap;
         vm.chatWith = chatWith;
+        vm.viewRequest = viewRequest;
 
         active();
 
@@ -135,6 +136,10 @@
             }).error(function (data) {
                 console.log(data);
             });
+        }
+
+        function viewRequest(requestId) {
+            $state.go('tab.request', {requestId: requestId});
         }
     }
 })();

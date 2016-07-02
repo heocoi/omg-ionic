@@ -5,8 +5,8 @@
 
     <ion-tabs class="tabs-striped tabs-top tabs-icon-left tabs-background-light tabs-color-positive">
         <ion-tab title="My requests" icon-on="ion-ios-cart" icon-off="ion-ios-cart-outline">
-            <ion-content style="top: 110px;">
-                <div class="list card" ng-repeat="request in vm.myRequests">
+            <ion-content style="top: 110px;" overflow-scroll="true">
+                <div class="list card" ng-repeat="request in vm.myRequests" ng-click="vm.showRequest(request.id)">
                     <div class="item item-avatar">
                         <img ng-src="https://api.adorable.io/avatars/285/{{request.author.email}}">
                         <h2>{{request.author.first_name || request.author.email}}</h2>
@@ -19,17 +19,13 @@
                             {{request.description}}
                         </p>
                     </div>
-                    <!-- <a class="item item-icon-left assertive" href="#">
-                        <i class="icon ion-music-note"></i>
-                        Start listening
-                    </a> -->
                 </div>
             </ion-content>
         </ion-tab>
 
         <ion-tab title="All" icon-on="ion-ios-clock" icon-off="ion-ios-clock-outline">
-            <ion-content style="top: 110px;">
-                <div class="list card" ng-repeat="request in vm.allRequests">
+            <ion-content style="top: 110px;" overflow-scroll="true">
+                <div class="list card" ng-repeat="request in vm.allRequests" ng-click="vm.showRequest(request.id)">
                     <div class="item item-avatar">
                         <img ng-src="https://api.adorable.io/avatars/285/{{request.author.email}}">
                         <h2>{{request.author.first_name +' '+ request.author.last_name || request.author.email}}</h2>
@@ -96,9 +92,9 @@
                     <textarea placeholder="Description" style="height: 200px;" ng-model="vm.request.description"></textarea>
                 </label>
             </div>
-            <div class="popup-submit-st">
-                <button class="button button-positive" ng-click="vm.sendRequest()">
-                ã€€POSTã€€
+            <div class="popup-submit-st padding">
+                <button class="button button-block button-positive" ng-click="vm.sendRequest()">
+                Post
                 </button>
             </div>
         </ion-content>

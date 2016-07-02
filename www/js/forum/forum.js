@@ -12,6 +12,7 @@
         vm.sendRequest = sendRequest;
         vm.allRequests = [];
         vm.myrequests = [];
+        vm.showRequest = showRequest;
 
         active();
 
@@ -89,6 +90,10 @@
                 }
                 return errors;
             }
+        }
+
+        function showRequest(requestId) {
+            $state.go('tab.request', {requestId: requestId});
         }
     }
 

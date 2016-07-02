@@ -1,0 +1,86 @@
+<ion-view view-title="Request" ng-controller="RequestCtrl as vm">
+    <ion-nav-buttons side="primary">
+        <button class="button button-clear" ng-click="vm.back()">
+            <i class="icon ion-chevron-left"></i> Back
+        </button>
+    </ion-nav-buttons>
+
+    <ion-content overflow-scroll="true">
+        <div class="list card">
+            <div class="item item-avatar" ng-if="vm.request.author.id != vm.myId">
+                <img ng-src="https://api.adorable.io/avatars/285/{{vm.request.author.email}}">
+                <h2>{{vm.request.author.first_name || vm.request.author.email}}</h2>
+                <p am-time-ago="vm.request.updated_at"></p>
+            </div>
+
+            <div class="item item-body" ng-if="vm.request.author.id != vm.myId">
+                <h2>Profile</h2>
+                <p>Age<span class="item-note">{{vm.request.author.age}}</span></p>
+                <p>Gender<span class="item-note">{{vm.request.author.gender != null ? vm.request.author.gender ? 'Male' : 'Female' : ''}}</span></p>
+                <p>Language<span class="item-note">{{vm.request.author.language}}</span></p>
+                <p>Email<span class="item-note">{{vm.request.author.email}}</span></p>
+            </div>
+            <div class="item item-body">
+                <h2>Request</h2>
+                <p>Title<span class="item-note">{{vm.categories[vm.request.category_id].title}}</span></p>
+                <p>Start time<span class="item-note">{{vm.request.start_time}}</span></p>
+                <p>End time<span class="item-note">{{vm.request.end_time}}</span></p>
+                <p>Place<span class="item-note">{{vm.request.place}}</span></p>
+                <p>Description</p>
+                <p>{{vm.request.description}}</p>
+            </div>
+        </div>
+        <div class="padding" ng-if="vm.request.author.id != vm.myId">
+            <a class="button button-block button-energized">Chat with me</a>
+        </div>
+        <div class="padding" ng-if="vm.request.author.id == vm.myId">
+            <a class="button button-block button-energized" ng-click="vm.openModal()">Edit</a>
+        </div>
+    </ion-content>
+
+    <script id="editRequestModal.html" type="text/ng-template">
+    <ion-modal-view>
+        <ion-header-bar>
+            <div class="buttons">
+                <button id="close-icon-st" class="button button-icon icon ion-ios-close-empty" ng-click="vm.closeModal()"></button>
+            </div>
+            <h1 class="title post-h1-st">Request</h1>
+        </ion-header-bar>
+        <ion-content>
+            <div class="list">
+                <div class="item item-divider" ng-if="vm.errors.length">
+                    <ul style="list-style-type: disc;" class="padding">
+                        <li class="small assertive" ng-repeat="error in vm.errors">{{error}}</li>
+                    </ul>
+                </div>
+                <label class="item item-input item-select">
+                    <span class="input-label">Type</span>
+                    <select ng-model="vm.request.category_id">
+                        <option ng-repeat="category in vm.categories" value="{{category.id}}" ng-selected="category.id == vm.request.category_id">{{category.title}}</option>
+                    </select>
+                </label>
+                <label class="item item-input" ng-model="vm.request.startDatetime" ion-datetime-picker>
+                    <span class="input-label">Start time</span>
+                    <input type="hidden" ng-model="vm.request.start_time">
+                    <span>{{vm.request.start_time | date: "yyyy-MM-dd HH:mm"}}</span>
+                </label>
+                <label class="item item-input" ng-model="vm.request.endDatetime" ion-datetime-picker>
+                    <span class="input-label">End time</span>
+                    <input type="hidden" ng-model="vm.request.end_time">
+                    <span>{{vm.request.end_time | date: "yyyy-MM-dd HH:mm"}}</span>
+                </label>
+                <label class="item item-input">
+                    <span class="input-label">Place</span>
+                    <input type="text" ng-model="vm.request.place">
+                </label>
+                <label class="item item-input">
+                    <textarea placeholder="Description" style="height: 200px;" ng-model="vm.request.description"></textarea>
+                </label>
+            </div>
+            <div class="padding">
+                <button class="button button-block button-energized" ng-click="vm.save()">Save</button>
+            </div>
+        </ion-content>
+    </ion-modal-view>
+    </script>
+</ion-view>
