@@ -2,9 +2,9 @@
     'use strict';
 
     angular.module('app.map').controller('MapCtrl', MapCtrl);
-    MapCtrl.$inject = ['$scope', '$ionicLoading', 'leafletData', '$http', 'API'];
+    MapCtrl.$inject = ['$scope', '$ionicLoading', 'leafletData', '$http', 'API', '_', '$state'];
 
-    function MapCtrl($scope, $ionicLoading, leafletData, $http, API) {
+    function MapCtrl($scope, $ionicLoading, leafletData, $http, API, _, $state) {
         var vm = this;
         vm.map = {
             defaults: {
@@ -19,6 +19,7 @@
         vm.userCurPos = {}; // user's current position
         vm.closePreview = closePreview;
         vm.focusMap = focusMap;
+        vm.chatWith = chatWith;
 
         active();
 
@@ -26,6 +27,9 @@
             var selectedUserId = args.modelName;
             $http.get(API.BASE_URL + '/users/' + selectedUserId).success(function (data) {
                 vm.selectedUser = data.user;
+                // get the latest request of user if exist
+                vm.selectedUser.request = _.reverse(_.sortBy(data.requests, 'updated_at'))[0];
+                console.log(data);
             }).error(function (data) {
                 // console.log(data);
             });
@@ -80,18 +84,6 @@
                             focus: false,
                             draggable: false
                         },
-                        2: {
-                            lat: lat + 0.02,
-                            lng: lng - 0.03,
-                            focus: false,
-                            draggable: false
-                        },
-                        3: {
-                            lat: lat + 0.010,
-                            lng: lng + 0.07,
-                            focus: false,
-                            draggable: false
-                        },
                     }
                 });
                 console.log(pos);
@@ -100,6 +92,10 @@
                 });
                 // hide loading to show content
                 $ionicLoading.hide();
+            });
+
+            $http.get(API.BASE_URL + '/requestCategories').success(function (data) {
+                vm.categories = data.categories;
             });
         }
 
@@ -111,6 +107,33 @@
             console.log('yawn');
             leafletData.getMap('map').then(function (map) {
                 map.panTo(new L.LatLng(vm.userCurPos.coords.latitude, vm.userCurPos.coords.longitude));
+            });
+        }
+
+        function chatWith(userId) {
+            $http.get(API.BASE_URL + '/threads/participants/' + userId).success(function (data) {
+                // console.log(data);
+                // go to specify thread if chatted with user before
+                if (data.threads.length) {
+                    var threadId = data.threads[0]['id'];
+                    // console.log(threadId);
+                    $state.go('tab.chat-detail', {chatId: threadId});
+                    // XXX when go to child page (msg detail page), back button is not showed
+                    // then, unable to back parent page (threads page)
+                    // @link https://github.com/driftyco/ionic/issues/437
+                } else {
+                    // else, create new thread with current user as creator
+                    $http.post(API.BASE_URL + '/threads', {
+                        subject: '', // FIXME is required?
+                        recipients: [userId]
+                    }).success(function (data) {
+                        $state.go('tab.chat-detail', {chatId: data.thread.id});
+                    }).error(function (data) {
+                        console.log(data);
+                    });
+                }
+            }).error(function (data) {
+                console.log(data);
             });
         }
     }

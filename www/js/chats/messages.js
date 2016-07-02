@@ -2,9 +2,9 @@
     'use strict';
 
     angular.module('app.chats').controller('MessagesCtrl', MessagesCtrl);
-    MessagesCtrl.$inject = ['auth', '$rootScope', '$scope', '$state', '$stateParams', '$http', '$timeout', '$ionicScrollDelegate', 'pusherService', 'API'];
+    MessagesCtrl.$inject = ['auth', '$rootScope', '$scope', '$state', '$stateParams', '$http', '$timeout', '$ionicScrollDelegate', '$ionicNavBarDelegate' , 'pusherService', 'API', '$ionicHistory'];
 
-    function MessagesCtrl(auth, $rootScope, $scope, $state, $stateParams, $http, $timeout, $ionicScrollDelegate, pusherService, API) {
+    function MessagesCtrl(auth, $rootScope, $scope, $state, $stateParams, $http, $timeout, $ionicScrollDelegate, $ionicNavBarDelegate, pusherService, API, $ionicHistory) {
         var vm = this;
         var isIOS = ionic.Platform.isWebView() && ionic.Platform.isIOS();
         vm.sendMessage = sendMessage;
@@ -13,6 +13,7 @@
         vm.messages = [];
         vm.tokenClaims = auth.getTokenClaims();
         vm.keyboardHeight = 0;
+        vm.back = back;
 
         active();
 
@@ -20,8 +21,9 @@
 
         function active() {
             vm.myId = vm.tokenClaims.sub;
-            // hide tabs
+            // hide tabs, back button
             $rootScope.hideTabs = true;
+            $ionicNavBarDelegate.showBackButton(false);
 
             // scroll to last message (bottom)
             $timeout(function() {
@@ -94,6 +96,10 @@
             $timeout(function() {
                 $ionicScrollDelegate.scrollBottom(true);
             }, 300);
+        }
+
+        function back() {
+            $state.go('tab.chats');
         }
     }
 })();
