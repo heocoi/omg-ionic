@@ -1,0 +1,37 @@
+<ion-view view-title="My Profile" ng-controller="ProfileCtrl as vm">
+    <ion-content>
+        <div class="list" style="margin: 0;">
+            <div class="item item-avatar item-avatar-center-lg">
+                <img class="center" src="https://api.adorable.io/avatars/285/{{vm.user.email}}" style="border: 2px solid #ccc;">
+            </div>
+            <a class="item">
+                First Name <span class="item-note">{{vm.user.first_name}}</span>
+            </a>
+            <a class="item">
+                Last Name <span class="item-note">{{vm.user.last_name}}</span>
+            </a>
+            <a class="item">
+                Email <span class="item-note">{{vm.user.email}}</span>
+            </a>
+            <a class="item">
+                Age <span class="item-note">{{vm.user.age}}</span>
+            </a>
+            <a class="item">
+                Gender <span class="item-note">{{vm.user.gender != null ? vm.user.gender ? 'Male' : 'Female' : ''}}</span>
+            </a>
+            <a class="item">
+                Country <span class="item-note">{{vm.user.country}}</span>
+            </a>
+            <a class="item">
+                Language <span class="item-note">{{vm.user.language}}</span>
+            </a>
+            <a class="item" style="min-height: 100px;">
+                {{vm.user.introduction}}
+            </a>
+        </div>
+
+        <a class="button button-full button-positive" style="margin-top: 50px;" ng-href="#/tab/editProfile">
+            Edit
+        </a>
+    </ion-content>
+</ion-view>

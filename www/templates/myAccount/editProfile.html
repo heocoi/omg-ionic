@@ -1,4 +1,4 @@
-<ion-view view-title="Edit Profile" ng-controller="MyAccountCtrl as vm">
+<ion-view view-title="Edit Profile" ng-controller="ProfileCtrl as vm">
     <ion-content>
         <div class="list" style="margin: 0;">
             <div class="item item-avatar item-avatar-center-lg">
@@ -6,14 +6,14 @@
             </div>
             <label class="item item-input">
                 <span class="input-label">First Name</span>
-                <input type="number" ng-model="vm.user.first_name">
+                <input type="text" ng-model="vm.user.first_name">
             </label>
             <label class="item item-input">
                 <span class="input-label">Last Name</span>
-                <input type="number" ng-model="vm.user.last_name">
+                <input type="text" ng-model="vm.user.last_name">
             </label>
             <a class="item">
-                Email <span class="item-note">Grammy</span>
+                Email <span class="item-note">{{vm.user.email}}</span>
             </a>
             <label class="item item-input">
                 <span class="input-label">Age</span>
@@ -22,24 +22,23 @@
             <label class="item item-input item-select">
                 <span class="input-label">Gender</span>
                 <select ng-model="vm.user.gender">
-                    <option>Female</option>
-                    <option>Male</option>
+                    <option value="0">Female</option>
+                    <option value="1">Male</option>
                 </select>
             </label>
-            <label class="item item-input item-select">
+            <label class="item item-input">
                 <span class="input-label">Country</span>
-                <select ng-model="vm.user.country">
-                    <option selected>France</option>
-                    <option>United State</option>
-                    <option>China</option>
-                    <option>Korea</option>
-                </select>
+                <input type="text" ng-model="vm.user.country">
             </label>
-            <a class="item">
-                Language<span class="item-note">English, Vietnamese</span>
-            </a>
+            <label class="item item-input">
+                <span class="input-label">Language</span>
+                <input type="text" ng-model="vm.user.language">
+            </label>
+            <label class="item item-input">
+                <textarea placeholder="Introduction" style="height: 200px;" ng-model="vm.user.introduction"></textarea>
+            </label>
         </div>
-        <button class="button button-full button-positive" style="margin-top: 50px;">
+        <button class="button button-full button-positive" style="margin-top: 50px;" ng-click="vm.saveProfile()">
             Save
         </button>
     </ion-content>
