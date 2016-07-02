@@ -1,0 +1,52 @@
+<ion-view view-title="Settings" ng-controller="MyAccountCtrl as vm">
+    <ion-content>
+        <div class="list" style="margin: 0;">
+            <div class="item item-avatar item-avatar-center-lg">
+                <img class="center" src="https://api.adorable.io/avatars/285/{{vm.user.email}}" style="border: 2px solid #ccc;">
+                <h2 class="center">{{vm.user.first_name + ' ' + vm.user.first_name}} <a class="icon ion-edit" ng-href="#/tab/myAccount/editProfile" style="font-size: 1.2em;"></a><h2>
+            </div>
+            <div class="item item-divider">
+                Profile
+            </div>
+            <a class="item">
+                First Name <span class="item-note">Grammy</span>
+            </a>
+            <a class="item">
+                Last Name <span class="item-note">Grammy</span>
+            </a>
+            <a class="item">
+                Email <span class="item-note">Grammy</span>
+            </a>
+            <a class="item">
+                Age <span class="item-note">Grammy</span>
+            </a>
+            <a class="item">
+                Gender <span class="item-note">Grammy</span>
+            </a>
+            <a class="item">
+                Country <span class="item-note">Grammy</span>
+            </a>
+            <a class="item">
+                Language <span class="item-note">English, Vietnamese</span>
+            </a>
+
+            <div class="item item-divider">
+                Settings
+            </div>
+            <li class="item item-toggle">
+                Share my location
+                <label class="toggle toggle-positive">
+                    <input type="checkbox" ng-checked="vm.isShareLoc">
+                    <div class="track">
+                        <div class="handle"></div>
+                    </div>
+                </label>
+            </li>
+
+            <a class="item item-icon-left" ng-click="vm.logout()">
+                <i class="icon ion-android-exit"></i>
+                Logout
+            </a>
+        </div>
+    </ion-content>
+</ion-view>

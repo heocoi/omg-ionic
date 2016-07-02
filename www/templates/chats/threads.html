@@ -1,0 +1,16 @@
+<ion-view view-title="Chats" ng-controller="ThreadsCtrl as vm">
+    <ion-nav-buttons side="right">
+        <a class="button button-icon icon ion-person-stalker" ng-href="#/tab/contacts"></a>
+    </ion-nav-buttons>
+    <ion-content>
+        <div class="list">
+            <a class="item item-avatar" ng-href="#/tab/chats/{{thread.id}}" ng-repeat="thread in vm.threads" style="position: relative;">
+                <img ng-src="https://api.adorable.io/avatars/285/{{thread.partner}}">
+                <h2>{{thread.partner}}</h2>
+                <span class="item-note" style="float: right;">{{thread.updated_at | amDateFormat:'hh:mm a'}}</span>
+                <p>{{thread.last_message.body}}</p>
+                <span class="badge badge-assertive" ng-if="thread.userUnreadMessagesCount">{{thread.userUnreadMessagesCount}}</span>
+            </a>
+        </div>
+    </ion-content>
+</ion-view>

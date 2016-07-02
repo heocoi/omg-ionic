@@ -1,0 +1,46 @@
+<ion-view view-title="Edit Profile" ng-controller="MyAccountCtrl as vm">
+    <ion-content>
+        <div class="list" style="margin: 0;">
+            <div class="item item-avatar item-avatar-center-lg">
+                <img class="center" src="https://api.adorable.io/avatars/285/{{vm.user.email}}" style="border: 2px solid #ccc;">
+            </div>
+            <label class="item item-input">
+                <span class="input-label">First Name</span>
+                <input type="number" ng-model="vm.user.first_name">
+            </label>
+            <label class="item item-input">
+                <span class="input-label">Last Name</span>
+                <input type="number" ng-model="vm.user.last_name">
+            </label>
+            <a class="item">
+                Email <span class="item-note">Grammy</span>
+            </a>
+            <label class="item item-input">
+                <span class="input-label">Age</span>
+                <input type="number" ng-model="vm.user.age">
+            </label>
+            <label class="item item-input item-select">
+                <span class="input-label">Gender</span>
+                <select ng-model="vm.user.gender">
+                    <option>Female</option>
+                    <option>Male</option>
+                </select>
+            </label>
+            <label class="item item-input item-select">
+                <span class="input-label">Country</span>
+                <select ng-model="vm.user.country">
+                    <option selected>France</option>
+                    <option>United State</option>
+                    <option>China</option>
+                    <option>Korea</option>
+                </select>
+            </label>
+            <a class="item">
+                Language<span class="item-note">English, Vietnamese</span>
+            </a>
+        </div>
+        <button class="button button-full button-positive" style="margin-top: 50px;">
+            Save
+        </button>
+    </ion-content>
+</ion-view>

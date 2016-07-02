@@ -1,0 +1,19 @@
+<ion-view hide-nav-bar="true" ng-controller="LoginCtrl as vm">
+    <ion-content class="padding">
+        <p class="msg-error" ng-show="vm.error">{{vm.error}}</p>
+        <div class="list list-inset">
+            <label class="item item-input">
+                <i class="icon ion-email placeholder-icon"></i>
+                <input type="text" placeholder="Email" ng-model="vm.email">
+            </label>
+            <label class="item item-input">
+                <i class="icon ion-locked placeholder-icon"></i>
+                <input type="password" placeholder="Password" ng-model="vm.password">
+            </label>
+            <button class="button button-block button-positive" ng-click="vm.submit()" ng-disabled="!vm.email || !vm.password">
+                Login
+            </button>
+            <p><a ng-href="#/signup">Create new account</a> if you don't have yet.</p>
+        </div>
+    </ion-content>
+</ion-view>
