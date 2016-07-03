@@ -21,7 +21,6 @@
                 <p>Email<span class="item-note">{{vm.request.author.email}}</span></p>
             </div>
             <div class="item item-body">
-                <h2>Request</h2>
                 <p>Title<span class="item-note">{{vm.categories[vm.request.category_id - 1].title}}</span></p>
                 <p>Start time<span class="item-note">{{vm.request.start_time}}</span></p>
                 <p>End time<span class="item-note">{{vm.request.end_time}}</span></p>
@@ -31,7 +30,7 @@
             </div>
         </div>
         <div class="padding" ng-if="vm.request.author.id != vm.myId">
-            <a class="button button-block button-energized">Chat with me</a>
+            <a class="button button-block button-energized"><i class="ion-chatbubble-working"></i> Chat with me</a>
         </div>
         <div class="padding" ng-if="vm.request.author.id == vm.myId">
             <a class="button button-block button-energized" ng-click="vm.openModal()">Edit</a>
@@ -44,7 +43,6 @@
             <div class="buttons">
                 <button id="close-icon-st" class="button button-icon icon ion-ios-close-empty" ng-click="vm.closeModal()"></button>
             </div>
-            <h1 class="title post-h1-st">Request</h1>
         </ion-header-bar>
         <ion-content>
             <div class="list">

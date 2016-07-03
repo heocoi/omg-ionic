@@ -21,8 +21,8 @@
             <div class="item item-body">
                 <h2 ng-if="vm.selectedUser.request">{{vm.categories[vm.selectedUser.request.category_id].title}}</h2>
                 <p ng-if="vm.selectedUser.request">{{vm.selectedUser.request.description}}</p>
-                <span ng-if="vm.selectedUser.request"><a ng-click="vm.viewRequest(vm.selectedUser.request.id)" class="button button-small button-energized">View request</a></span>
-                <span class="right-button"><a ng-click="vm.chatWith(vm.selectedUser.id)" class="button button-small button-energized">Chat with me</a></span>
+                <span ng-if="vm.selectedUser.request"><a ng-click="vm.viewRequest(vm.selectedUser.request.id)" class="button button-small button-energized"><i class="ion-eye"></i> View request</a></span>
+                <span class="right-button"><a ng-click="vm.chatWith(vm.selectedUser.id)" class="button button-small button-energized"><i class="ion-chatbubble-working"></i> Chat with me</a></span>
             </div>
         </div>
     </ion-content>
