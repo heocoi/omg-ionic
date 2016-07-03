@@ -14,7 +14,7 @@
 
                     </div>
                     <div class="item item-body">
-                        <h2 class="forum-h2-st">{{vm.categories[request.category_id].title}}</h3>
+                        <h2 class="forum-h2-st">{{vm.categories[request.category_id - 1].title}}</h3>
                         <p class="forum-p-st">
                             {{request.description}}
                         </p>
@@ -40,7 +40,7 @@
                         </span>
                     </div>
                     <div class="item item-body">
-                        <h2 class="forum-h2-st"><i class="ion-ios-heart"></i> {{vm.categories[request.category_id].title}}</h2>
+                        <h2 class="forum-h2-st"><i class="ion-ios-heart"></i> {{vm.categories[request.category_id - 1].title}}</h2>
                         <p class="forum-p-st">
                             {{request.description}}
                         </p>
