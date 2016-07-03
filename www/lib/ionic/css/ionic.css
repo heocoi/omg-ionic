@@ -7664,7 +7664,7 @@ textarea {
   padding: 7px 10px 7px 0px;
   max-width: 200px;
   width: 35%;
-  color: #444;
+  color: #727272;
   font-size: 16px; }
 
 .placeholder-icon {
@@ -8652,7 +8652,7 @@ progress {
         color: #fff; }
   .button.button-stable {
     border-color: transparent;
-    background-color: #f8f8f8;
+    background-color: #c1bfbf;
     color: #444; }
     .button.button-stable:hover {
       color: #444;

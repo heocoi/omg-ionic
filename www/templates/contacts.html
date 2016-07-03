@@ -3,7 +3,7 @@
         <div class="list">
             <a class="item item-avatar" ng-click="vm.modal.show(); vm.showContact({{contact.id}})" ng-repeat="contact in vm.contacts">
                 <img src="https://api.adorable.io/avatars/285/{{contact.email}}">
-                <h2>{{contact.name || 'Unknown'}}</h2>
+                <h2>{{contact.first_name || 'Unknown'}}</h2>
                 <p>{{contact.email}}</p>
             </a>
         </div>
@@ -15,7 +15,7 @@
             <ion-content class="list card" style="margin: 0;">
                 <div class="item item-avatar item-avatar-center" style="background:url('http://subtlepatterns2015.subtlepatterns.netdna-cdn.com/patterns/weather.png');">
                     <img class="center" src="https://api.adorable.io/avatars/285/{{vm.contact.email}}" style="border: 2px solid #fff;">
-                    <h2 class="center">{{vm.contact.name || vm.contact.email}}</h2>
+                    <h2 class="center">{{vm.contact.first_name || vm.contact.email}}</h2>
                     <button class="button button-clear button-dark right" ng-click="vm.modal.hide()">
                         <i class="icon ion-ios-close-empty icon-2x"></i>
                     </button>
