@@ -142,4 +142,12 @@
         }]);
     }
 
+    // toastrConfig
+    core.config(function (toastrConfig) {
+        angular.extend(toastrConfig, {
+            timeOut: 50000,
+            positionClass: 'toast-top-center'
+        });
+    });
+
 })();

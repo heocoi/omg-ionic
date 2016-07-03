@@ -7,6 +7,8 @@
         'pusher-angular',
         'leaflet-directive',
         'angularMoment',
-        'ion-datetime-picker'
+        'ion-datetime-picker',
+        'ngAnimate',
+        'toastr'
     ]);
 })();

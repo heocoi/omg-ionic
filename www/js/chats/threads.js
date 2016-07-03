@@ -2,9 +2,9 @@
     'use strict';
 
     angular.module('app.chats').controller('ThreadsCtrl', ThreadsCtrl);
-    ThreadsCtrl.$inject = ['$rootScope', '$scope', '$state', '$http', 'API', 'pusherService', 'auth', '_'];
+    ThreadsCtrl.$inject = ['$rootScope', '$scope', '$state', '$http', 'API', 'pusherService', 'auth', '_', 'toastr'];
 
-    function ThreadsCtrl($rootScope, $scope, $state, $http, API, pusherService, auth, _) {
+    function ThreadsCtrl($rootScope, $scope, $state, $http, API, pusherService, auth, _, toastr) {
         var vm = this;
         vm.tokenClaims = auth.getTokenClaims();
 
@@ -19,7 +19,7 @@
             //  subscribe to events and be notified when messages
             var channel = pusherService.getChannel('for_user_' + vm.myId);
             channel.bind('new_message', function(data) {
-                console.log(data);
+                // console.log(data);
                 getThreads();
             });
 
@@ -32,8 +32,6 @@
                     console.log(data);
                 });
             }
-
-
         }
     }
 })();
