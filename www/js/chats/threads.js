@@ -23,6 +23,17 @@
                 getThreads();
             });
 
+            channel.bind('new_request', function(data) {
+                // console.log(data);
+                if (data.author.id != vm.myId) {
+                    toastr.info(data.notify, 'Have new request!', {
+                        onTap: function (e) {
+                            $state.go('tab.request', {requestId: data.request_id});
+                        }
+                    });
+                }
+            });
+
             function getThreads() {
                 $http.get(API.BASE_URL + '/threads').success(function (data) {
                     // sort in desc order by updated timestamp
