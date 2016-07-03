@@ -9,7 +9,7 @@
         vm.logout = logout;
         vm.tokenClaims = auth.getTokenClaims();
         vm.setShareLocation = setShareLocation;
-
+        vm.setPushNotifications = setPushNotifications;
 
         active();
 
@@ -35,6 +35,16 @@
         function setShareLocation() {
             $http.post(API.BASE_URL + '/users/' + vm.myId + '/profile', {
                 is_sharing_location: vm.user.is_sharing_location
+            }).success(function (data) {
+                console.log(data);
+            }).error(function (data) {
+                console.log(data);
+            });
+        }
+
+        function setPushNotifications() {
+            $http.post(API.BASE_URL + '/users/' + vm.myId + '/profile', {
+                receive_notifications: vm.user.receive_notifications
             }).success(function (data) {
                 console.log(data);
             }).error(function (data) {
