@@ -1,9 +1,13 @@
 <ion-view view-title="My Profile" ng-controller="ProfileCtrl as vm">
+    <ion-nav-buttons side="right">
+        <a class="button button-icon icon ion-compose" ng-href="#/tab/editProfile"></a>
+    </ion-nav-buttons>
     <ion-content>
         <div class="list" style="margin: 0;">
             <div class="item item-avatar item-avatar-center-lg">
                 <img class="center" src="https://api.adorable.io/avatars/285/{{vm.user.email}}" style="border: 2px solid #ccc;">
             </div>
+
             <a class="item">
                 First Name <span class="item-note">{{vm.user.first_name}}</span>
             </a>
@@ -27,11 +31,6 @@
             </a>
             <a class="item" style="min-height: 100px;">
                 {{vm.user.introduction}}
-            </a>
-        </div>
-        <div class="padding">
-            <a class="button button-block button-energized" style="margin-top: 50px;" ng-href="#/tab/editProfile">
-                Edit
             </a>
         </div>
     </ion-content>
