@@ -145,7 +145,7 @@
     // toastrConfig
     core.config(function (toastrConfig) {
         angular.extend(toastrConfig, {
-            timeOut: 50000,
+            timeOut: 5000,
             positionClass: 'toast-top-center'
         });
     });
