@@ -32,6 +32,7 @@
 
         .state('tab.map', {
             url: '/map',
+            cache: false,
             views: {
                 'tab-map': {
                     templateUrl: 'templates/map.html',
