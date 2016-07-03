@@ -9,7 +9,7 @@
                 <div class="list card" ng-repeat="request in vm.myRequests" ng-click="vm.showRequest(request.id)">
                     <div class="item item-avatar">
                         <img ng-src="https://api.adorable.io/avatars/285/{{request.author.email}}">
-                        <h2>{{request.author.first_name || request.author.email}}</h2>
+                        <h2>{{request.author.first_name +' '+ request.author.last_name || request.author.email}}</h2>
                         <p am-time-ago="request.updated_at"></p>
 
                     </div>
